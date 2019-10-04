@@ -6,63 +6,63 @@
       <title>JS Bin</title>
       <style>
          body{
-         margin: 0;
-         padding: 0;
-         background: #222;
-         font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #222;
+            font-family: 'Roboto', sans-serif;
          }
 
-         p{
-         color: white;
-         font-size: 2vw;
-         margin: 1vw 0 1vw 1vw;
+         p  {
+            color: white;
+            font-size: 2vw;
+            margin: 1vw 0 1vw 1vw;
+        }
+
+         hr {
+            border : 0;
+            height: 0.3vw; 
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
+        }
+
+         #demo {
+            display:flex;
+            flex-wrap: wrap;
          }
 
-         hr{
-         border : 0;
-         height: 0.3vw; 
-         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
-         }
-
-         #demo{
-         display:flex;
-         flex-wrap: wrap;
-         }
-
-         #demo>div{
-         background: #505050;
-         display: flex;
-         align-items: center;
-         text-align: center;
-         height: 8vw;
-         width: 8vw;
-         font-size: 1.3vw;
-         color: white;
-         margin: 1vw 1vw;
-         border-radius: 5%;
+         #demo>div {
+            background: #505050;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            height: 8vw;
+            width: 8vw;
+            font-size: 1.3vw;
+            color: white;
+            margin: 1vw 1vw;
+            border-radius: 5%;
          }
 
          button{
-         font-size: 2.2vw;
-         font-weight: bold;
-         border: none;
-         outline: none;
-         background: lightgrey;
-         padding: 0.2vw 1.5vw;
-         border-radius: 0.5vw;
-         margin: 0 0 1vw 1vw;
+            font-size: 2.2vw;
+            font-weight: bold;
+            border: none;
+            outline: none;
+            background: lightgrey;
+            padding: 0.2vw 1.5vw;
+            border-radius: 0.5vw;
+            margin: 0 0 1vw 1vw;
          }
 
          button:hover{
-         background: orangered;
-         transition: 0.3s;
+            background: orangered;
+            transition: 0.3s;
          }
       </style>
    </head>
    <body>
 
       <p>Creating objects with unique IDs by click</p>
-      <button onclick = "func()">Start</button>
+      <button onclick = "createUniqObject()">Start</button>
       <hr>
       <div id = 'demo'></div>
 
@@ -81,14 +81,16 @@
          i = 1;
          
          //creates the objects
-         function func(){
+         function  createUniqObject(){
             var id = new Date().valueOf(); //random id
             var l = new Obj("Object", i, msToTime(id));
             console.log(l.type(id));
-            i++;
+            
             var div = document.createElement('div');
             div.innerHTML = l.type();
             document.getElementById('demo').appendChild(div);
+
+            i++;
          }
          
          //creates the unique IDs
