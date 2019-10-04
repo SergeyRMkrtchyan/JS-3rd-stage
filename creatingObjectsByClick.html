@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <title>JS Bin</title>
+      <style>
+         body{
+         margin: 0;
+         padding: 0;
+         background: #222;
+         font-family: 'Roboto', sans-serif;
+         }
+
+         p{
+         color: white;
+         font-size: 2vw;
+         margin: 1vw 0 1vw 1vw;
+         }
+
+         hr{
+         border : 0;
+         height: 0.3vw; 
+         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
+         }
+
+         #demo{
+         display:flex;
+         flex-wrap: wrap;
+         }
+
+         #demo>div{
+         background: #505050;
+         display: flex;
+         align-items: center;
+         text-align: center;
+         height: 8vw;
+         width: 8vw;
+         font-size: 1.3vw;
+         color: white;
+         margin: 1vw 1vw;
+         border-radius: 5%;
+         }
+
+         button{
+         font-size: 2.2vw;
+         font-weight: bold;
+         border: none;
+         outline: none;
+         background: lightgrey;
+         padding: 0.2vw 1.5vw;
+         border-radius: 0.5vw;
+         margin: 0 0 1vw 1vw;
+         }
+
+         button:hover{
+         background: orangered;
+         transition: 0.3s;
+         }
+      </style>
+   </head>
+   <body>
+
+      <p>Creating objects with unique IDs by click</p>
+      <button onclick = "func()">Start</button>
+      <hr>
+      <div id = 'demo'></div>
+
+      <script>
+
+         //the constructor
+         function Obj(name, number, id){
+            this.name = name;
+            this.number = number;
+            this.id = id;
+            this.type = function(){
+                return this.name + " " + this.number + " " + this.id;
+            }
+         }
+         
+         i = 1;
+         
+         //creates the objects
+         function func(){
+            var id = new Date().valueOf(); //random id
+            var l = new Obj("Object", i, msToTime(id));
+            console.log(l.type(id));
+            i++;
+            var div = document.createElement('div');
+            div.innerHTML = l.type();
+            document.getElementById('demo').appendChild(div);
+         }
+         
+         //creates the unique IDs
+         function msToTime(duration) {
+            var milliseconds = parseInt((duration % 1000) / 100);
+            seconds = Math.floor((duration / 1000) % 60);
+            minutes = Math.floor((duration / (1000 * 60)) % 60);
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24) + 4;
+            return hours + "_" + minutes + "_" + seconds + milliseconds;
+         }
+      </script>
+   </body>
+</html>
