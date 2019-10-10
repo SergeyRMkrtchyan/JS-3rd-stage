@@ -1,0 +1,168 @@
+<!-- For online editing: -->
+<!-- https://jsbin.com/zolexevuja/edit?html,output -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Countries of the Persian Gulf</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: Verdana;
+        }
+        
+        .background {
+            height: 100%;
+            background-image: url('http://bit.do/fckxf');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: blur(5px);
+        }
+        
+        .wrapper {
+            position: absolute;
+            top: 5%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0px 0;
+            font-size: 1.7vw;
+        }
+        
+        li {
+            background: white;
+            font-size: 1.9vw;
+            font-family: Arial Black;
+        }
+        
+        h3 {
+            text-transform: uppercase;
+            margin: 0;
+            padding: 0;
+            font-size: 2.5vw;
+            font-family: Arial Black;
+            color: white;
+        }
+        
+        img {
+            width: 14.29%;
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+        
+        img:hover {
+            filter: grayscale(0%);
+            transition: 0.4s;
+            transform: scale(1.1);
+            z-index: 2;
+            opacity: 1;
+        }
+        
+        .header {
+            margin: 3vw 0 0 3vw;
+        }
+        
+        .flag_section {
+            display: flex;
+            justify-content: center;
+        }
+        
+        #result_section {
+            background: lightgrey;
+            margin-left: 40%;
+            width: 60%;
+            display: none;
+            margin-top: 5vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="wrapper">
+        <div class="header">
+            <h3>States</h3>
+            <h3 style='margin-top: -1.6vw;'>of the Persian Gulf</h3>
+        </div>
+        <div class="flag_section">
+            <img onclick='clearFunc(); show(iraq);' src='http://bit.do/fckkh' alt='Iraq'>
+            <img onclick='clearFunc(); show(kuwait);' src='http://bit.do/fckkA' alt='Kuwait'>
+            <img onclick='clearFunc(); show(iran);' src='http://bit.do/fckmc' alt='Iran'>
+            <img onclick='clearFunc(); show(uae);' src='http://bit.do/fckmi' alt='UAE'>
+            <img onclick='clearFunc(); show(bahrain);' src='http://bit.do/fckmm' alt='Bahrain'>
+            <img onclick='clearFunc(); show(saudi_arabia);' src='http://bit.do/fckks' alt='Saudi Arabia'>
+            <img onclick='clearFunc(); show(oman);' src='http://bit.do/fcknp' alt="Oman">
+        </div>
+        <div id="result_section">
+            <ul id='name'>Officially called:</ul>
+            <ul id='area'>Area:</ul>
+            <ul id='population'>Population:</ul>
+            <ul id='currency'>Currency:</ul>
+        </div>
+    </div>
+
+    <script>
+        function Country(name, area, population, currency){
+            this.name = name;
+            this.area = area;
+            this.population = population;
+            this.currency = currency;
+        }
+
+        function clearFunc(){
+            document.getElementById('result_section').style.display = 'block';
+            if(document.getElementById("name").childElementCount>0){
+                var name = document.getElementById('name');
+                name.removeChild(name.childNodes[1]);
+                var area = document.getElementById('area');
+                area.removeChild(area.childNodes[1]);
+                var population = document.getElementById('population');
+                population.removeChild(population.childNodes[1]);
+                var currency = document.getElementById('currency');
+                currency.removeChild(currency.childNodes[1]);
+            }
+        }
+
+        iraq = new Country('جمهورية العراق, Jumhūrīyyat al-Irāq', '437,072 km2', '37,202,572', 'Iraqi dinar');
+        kuwait = new Country('دولة الكويت, Dawlat al-Kuwait', '17,818 km2', '4,621,638', 'Kuwaiti dinar');
+        iran = new Country('جمهوری اسلامی ایران, Jomhuri-ye Eslāmi-ye Irān', '1,648,195 km2', '82,531,700', 'Rial');
+        uae = new Country('دولة الإمارات العربية المتحدة, Dawlat al-ʾImārāt al-ʿArabīyyah al-Muttahidah, UAE', '83,600 km2', '9,599,353', 'UAE dirham');
+        bahrain = new Country('مملكة البحرين, Mamlakat al-Bahrayn', '778.3 km2', '1,425,171', 'Bahraini dinar');
+        saudi_arabia = new Country('المملكة العربية السعودية, al-Mamlakah al-ʿArabīyah as-Saʿūdīyah', '2,149,690 km2', '34,418,481', 'Saudi riyal');
+        oman = new Country('سلطنة عُمان, Saltanat ʻUmān', '309,500 km2', '4,424,762', 'Rial');
+
+        function show(id){
+
+            var name = document.createElement('li');
+            var area = document.createElement('li');
+            var population = document.createElement('li');
+            var currency = document.createElement('li');
+
+            name.innerHTML = id.name;
+            document.getElementById('name').appendChild(name);
+            
+            area.innerHTML = id.area;
+            document.getElementById('area').appendChild(area);
+            
+            population.innerHTML = id.population;
+            document.getElementById('population').appendChild(population);
+            
+            currency.innerHTML = id.currency;
+            document.getElementById('currency').appendChild(currency);
+        }
+    </script>
+</body>
+
+</html>
