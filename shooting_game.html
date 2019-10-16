@@ -1,0 +1,109 @@
+<!-- for online editing -->
+<!-- https://jsbin.com/qitakezuwe/edit?html,css,output -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Shooter</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .wrapper {
+            background: lightgrey;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .shooting_site {
+            width: 100%;
+            height: 30%;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #gunman {
+            margin: auto 8vw;
+            height: 100px;
+            filter: hue-rotate(85deg);
+            z-index: 2;
+        }
+        
+        #victim {
+            margin: auto 8vw;
+            height: 130px;
+            opacity: 0.8;
+        }
+        
+        #victim:hover {
+            cursor: url('https://cdn4.iconfinder.com/data/icons/aim-target/64/150_aim-focus-target-scope-crosshair-shooting-10-128.png') 60 60, auto;
+        }
+        
+        .white:active {
+            filter: invert(100%);
+        }
+        
+        #bullet {
+            display: none;
+            width: 1vmin;
+            height: 0.8vmin;
+            background: black;
+            border-radius: 5px;
+            position: absolute;
+            left: 12%;
+            top: 46%;
+            animation-name: bullet_move;
+            animation-duration: 1s;
+        }
+        
+        @keyframes bullet_move {
+            from {
+                left: 15vw;
+                background: black;
+            }
+            to {
+                left: 100%;
+                background: red;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div class="wrapper">
+        <div class="shooting_site">
+            <img id='gunman' src="http://bit.do/fc4bn" alt="gunman">
+            <div id="bullet"></div>
+            <img id="victim" onclick="create_bullet(); kill()" src="http://bit.do/fc4bs" alt="victim">
+        </div>
+    </div>
+
+    <script>
+        function create_bullet() {
+            document.getElementById("bullet").style.display = "block";
+            var div = document.createElement('div');
+            document.getElementById('bullet').appendChild(div);
+        }
+
+        function kill() {
+            document.getElementById("victim").style.transform = "rotate(90deg)";
+            document.getElementById("victim").style.transformOrigin = "bottom center";
+            document.getElementById("victim").style.transition = "all 0.8s";
+            document.getElementById("victim").style.transitionDelay = "0.5s";
+            document.getElementById("victim").style.opacity = 0;
+        }
+    </script>
+</body>
+
+</html>
