@@ -1,0 +1,131 @@
+<!-- For online editing: -->
+<!-- https://jsbin.com/milemerasa/1/edit?js,output -->
+<!-- enable "Auto-run JS" in the upper right corner of the page  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width">
+    <title>Getting Data with JS</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background: #f2e394;
+            font-family: Verdana;
+        }
+        
+        .buttons {
+            background: #587e76;
+            display: flex;
+            justify-content: center;
+        }
+        
+        h2 {
+            margin: 0;
+            color: grey;
+            font-size: 3vw;
+        }
+        
+        .main {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            width: 90%;
+            margin: auto;
+        }
+        
+        ul {
+            display: none;
+            font-size: 5vmin;
+            margin: 0;
+            padding: 1vw;
+            list-style: none;
+        }
+        
+        li {
+            margin: 3vw 0;
+        }
+        
+        #userId {
+            background: #d96459;
+        }
+        
+        #id {
+            background: #96ceb4;
+        }
+        
+        #title {
+            background: #588c7e;
+            font-size: 3vw;
+            padding-bottom: 3vw;
+        }
+        
+        #body {
+            background: #96ceb4;
+            background: #dbceb0;
+            font-size: 3vw;
+            padding-bottom: 3vw;
+        }
+        
+        button {
+            color: white;
+            background: #587e76;
+            border: none;
+            outline: none;
+            width: 15vw;
+            padding: 2vw 0;
+            font-weight: bold;
+            font-size: 2.5vw;
+            transition: 0.1s;
+            margin: 0 1vw;
+        }
+        
+        button:hover {
+            background-color: #9ab1ac;
+            transition: 0.4s;
+            color: white;
+            letter-spacing: 1.5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="buttons">
+        <button type="button" onclick="load_posts('userId')">User IDs</button>
+        <button type="button" onclick="load_posts('id')">IDs</button>
+        <button type="button" onclick="load_posts('title')">Titles</button>
+        <button type="button" onclick="load_posts('body')">Bodies</button>
+    </div>
+    <div class="main">
+        <ul id="userId"></ul>
+        <ul id="id"></ul>
+        <ul id="title"></ul>
+        <ul id="body"></ul>
+    </div>
+
+    <script>
+        function load_posts(containerId) {
+            var container = document.getElementById(containerId)
+            container.style.display = "block";
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var obj  = JSON.parse(this.responseText); 
+                    for(var i = 0; i < 10; i++){
+                        var li = document.createElement('li');
+                        li.innerHTML = obj[i][containerId];
+                        container.appendChild(li);
+                    }      
+                }
+            };
+            xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>
